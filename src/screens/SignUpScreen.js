@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { StyleSheet, SafeAreaView, TouchableOpacity } from 'react-native';
 import { NativeBaseProvider, Box, Text, Input, Icon, Button, HStack, Divider } from 'native-base';
-import Logo from '../logo2.svg';
+import Images from '../../assets/images';
+
 import { Ionicons, Fontisto, AntDesign, FontAwesome5 } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { auth } from '../../firebase';
@@ -27,11 +28,9 @@ const SignUpScreen = () => {
 
 
     return (
-        <SafeAreaView style={styles.container}>
-            <NativeBaseProvider>
                 <Box style={styles.innerContainer}>
                     <Box style={styles.box1}>
-                        <Logo />
+                        <Images.logo2 />
                         <Text style={styles.text1}>Sign Up Now!</Text>
                         <Text style={styles.text2}>
                             Lorem Ipsum is simply dummy text of the printing
@@ -139,8 +138,6 @@ const SignUpScreen = () => {
                         </HStack>
                     </Box>
                 </Box>
-            </NativeBaseProvider>
-        </SafeAreaView>
     );
 };
 

@@ -1,28 +1,50 @@
 import React from 'react';
 import { StyleSheet, SafeAreaView } from 'react-native';
 import { NativeBaseProvider, Box, Text, Input, Icon, Button, HStack, Divider, VStack } from 'native-base';
-import Logo from '../logo2.svg';
+import Images from '../../assets/images';
+import { AntDesign } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
-import { useRoute } from '@react-navigation/native';
 
-const PasswordChangedScreen = () => {
+const NewPasswordScreen = () => {
     const navigation = useNavigation();
-    const route = useRoute(); 
-
-    const { email } = route.params;
-    console.log(email);
-    
     return (
         <SafeAreaView style={styles.container}>
             <NativeBaseProvider>
                 <Box style={styles.innerContainer}>
                 <Box style={styles.box1}>
-                    <Logo />
-                    <Text style={styles.text1}>Forgot Password</Text>
-                    <Text style={styles.text2}>We've sent reset password link to your email</Text>
-                    <Text style={styles.text3}>{email}</Text>
+                    <Images.logo2 />
+                    <Text style={styles.text1}>Set A New Password</Text>
+                    <Text style={styles.text2}>
+                        New password must be different from your previous{'\n'}used passwords
+                    </Text>                
                 </Box>
-                    <VStack my='455' space={3}>
+                <Box style={styles.box2}>
+                    <Text style={styles.headingText}>New Password</Text>
+                    <Input
+                        size="lg"
+                        placeholder="Enter New Password"
+                        type='password'
+                        fontFamily='Comfortaa'
+                        borderRadius={10}
+                        style={styles.input}
+                        InputRightElement={
+                            <Icon as={AntDesign} name="lock" style={styles.icon} />
+                        }
+                        placeholderTextColor="#8E8E8E"
+                    />
+                    <Text style={styles.headingText}>Confirm New Password</Text>
+                    <Input
+                        size="lg"
+                        placeholder="Enter Confirm New Password"
+                        fontFamily='Comfortaa'
+                        type='password'
+                        borderRadius={10}
+                        style={styles.input}
+                        InputRightElement={
+                            <Icon as={AntDesign} name="lock" style={styles.icon} />
+                        }                        placeholderTextColor="#8E8E8E"
+                    />
+                    <VStack my='230' space={3}>
                         <Button
                             backgroundColor="#054BB4"
                             width="343px"
@@ -31,9 +53,6 @@ const PasswordChangedScreen = () => {
                             marginTop="15px"
                             fontFamily="Confortaa"
                             _pressed={{ backgroundColor: '#033C9D' }}
-                            onPress={() => {
-                                navigation.navigate('NewPasswordScreen');
-                            }}
                         >
                             Reset Password
                         </Button>
@@ -58,6 +77,7 @@ const PasswordChangedScreen = () => {
                         </Button>
                     </VStack>
                 </Box>
+            </Box>
             </NativeBaseProvider>
         </SafeAreaView>
     );
@@ -68,7 +88,7 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor:'#FFFFFF',
     },
-    innerContainer:{
+    innerContainer: {
         marginLeft: 15,
     },
     box1: {
@@ -94,19 +114,40 @@ const styles = StyleSheet.create({
         textAlign: 'left',
         color: '#33363B',
     },
-    text3: {
+    box2: {
+        width: 343,
+        height: 538,
+        top: '227px',
+        left: '16px',
+        gap: '16px',
+        marginVertical: 20,
+    },
+    headingText: {
         fontFamily: 'Comfortaa',
-        fontSize: '14px',
-        fontWeight: 400,
-        lineHeight: '20px',
+        fontSize: 16,
+        fontWeight: '500',
+        lineHeight: 21.6,
         textAlign: 'left',
-        marginTop: -15,
-        color: '#33363B',
+    },
+    input: {
+        flex: 1,
+        height: 48,
+        borderWidth: 0.5,
+        borderColor: '#DDDDDD',
+        backgroundColor: '#F9F9F9',
+        paddingLeft: 15,
+        paddingRight: 40,
+    },
+    icon: {
+        color: '#757575',
+        position: 'absolute',
+        marginLeft: 300,
+        backgroundColor: '#F9F9F9',
     },
     buttonStyle: {
         borderColor: '#8E8E8E',
         borderWidth: '1px',
-    },
+    }
 });
 
-export default PasswordChangedScreen;
+export default NewPasswordScreen;
