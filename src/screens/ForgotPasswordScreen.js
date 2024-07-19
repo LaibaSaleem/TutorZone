@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, SafeAreaView} from 'react-native';
 import { NativeBaseProvider, Box, Text, Input, Icon, Button, HStack, Divider, VStack } from 'native-base';
-import Logo from '../logo2.svg';
+import Image from '../../assets/images';
 import { Fontisto } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 
@@ -13,7 +13,7 @@ const ForgotPasswordScreen = () => {
             <NativeBaseProvider>
                 <Box style={styles.innerContainer}>
                 <Box style={styles.box1}>
-                    <Logo />
+                    <Image.logo2 />
                     <Text style={styles.text1}>Forgot Password</Text>
                     <Text style={styles.text2}>No worries, we'll send you instructions for resest
                     </Text>

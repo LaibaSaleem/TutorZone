@@ -1,15 +1,26 @@
 import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import SplashScreen from './assets/screens/SplashScreen';
-import SignUpScreen from './assets/screens/SignUpScreen';
-import LogInScreen from './assets/screens/LogInScreen';
-import ForgotPasswordScreen from './assets/screens/ForgotPasswordScreen';
-import PasswordChangedScreen from './assets/screens/PasswordChangedScreen';
-import NewPasswordScreen from './assets/screens/NewPasswordScreen';
-import { registerRootComponent } from 'expo';
-
+import SplashScreen from './src/screens/SplashScreen';
+import SignUpScreen from './src/screens/SignUpScreen';
+import LogInScreen from './src/screens/LogInScreen';
+import ForgotPasswordScreen from './src/screens/ForgotPasswordScreen';
+import PasswordChangedScreen from './src/screens/PasswordChangedScreen';
+import NewPasswordScreen from './src/screens/NewPasswordScreen';
+import {  SafeAreaView } from 'react-native';
+import { NativeBaseProvider} from 'native-base';
 const Stack = createNativeStackNavigator();
+const ScrollAndNativeBaseWrapper=(props)=>{
+  useEffect(()=>{
+    // handle auth here
+  },[])
+  return    (
+  <SafeAreaView style={styles.container}>
+    <NativeBaseProvider>
+      {props.childern}
+    </NativeBaseProvider>
+  </SafeAreaView>);
+}
 
 const App = () => {
   return (
@@ -17,17 +28,17 @@ const App = () => {
       <Stack.Navigator initialRouteName="SplashScreen">
         <Stack.Screen
           name="SplashScreen"
-          component={SplashScreen}
+          component={<ScrollAndNativeBaseWrapper><SplashScreen/></ScrollAndNativeBaseWrapper>}
           options={{ headerShown: false, headerBackVisible: false }}
         />
         <Stack.Screen
           name="SignUpScreen"
-          component={SignUpScreen}
+          component={<ScrollAndNativeBaseWrapper><SignUpScreen /></ScrollAndNativeBaseWrapper>}
           options={{ headerShown: false, headerBackVisible: false }}
         />
         <Stack.Screen
           name="LogInScreen"
-          component={LogInScreen}
+          component={<ScrollAndNativeBaseWrapper><LogInScreen /></ScrollAndNativeBaseWrapper>}
           options={{ headerShown: false, headerBackVisible: false }}
         />
         <Stack.Screen
@@ -51,3 +62,11 @@ const App = () => {
 };
 
 export default App;
+
+
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      backgroundColor: '#FFFFFF',
+  },
+})

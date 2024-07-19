@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { StyleSheet } from 'react-native';
-import { NativeBaseProvider, Box, Text } from 'native-base';
+import {  Box, Text } from 'native-base';
 import { useNavigation } from '@react-navigation/native';
-import Logo from '../logo.svg';
-import Background from '../background.svg';
+import Images from '../../assets/images';
 
 const SplashScreen = () => {
     const navigation = useNavigation();
@@ -17,15 +16,13 @@ const SplashScreen = () => {
     }, [navigation]);
 
     return (
-        <NativeBaseProvider>
             <Box style={styles.container}>
-                <Background style={styles.background} />
+                <Images.background style={styles.background} />
                 <Box style={styles.overlay}>
-                    <Logo style={styles.logo} />
+                    <Images.logo style={styles.logo} />
                     <Text style={styles.title}>Tutor Zone</Text>
                 </Box>
             </Box>
-        </NativeBaseProvider>
     );
 };
 
